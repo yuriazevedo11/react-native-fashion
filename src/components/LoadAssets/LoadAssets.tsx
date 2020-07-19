@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React, { ReactElement, useCallback, useState, useEffect } from 'react';
 import { InitialState, NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';

@@ -6,7 +6,7 @@ import { Onboarding } from '@/screens';
 const Stack = createStackNavigator();
 
 const AuthenticationStack = () => (
-  <Stack.Navigator>
+  <Stack.Navigator headerMode="none">
     <Stack.Screen name="Onboarding" component={Onboarding} />
   </Stack.Navigator>
 );

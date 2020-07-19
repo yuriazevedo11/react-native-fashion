@@ -1,3 +1,6 @@
 {
-  "extends": "@yuriazevedo/react-native"
+  "extends": "@yuriazevedo/react-native",
+  "rules": {
+    "react/require-default-props": "off"
+  }
 }
