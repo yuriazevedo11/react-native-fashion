@@ -6,11 +6,11 @@ import { SLIDE_HEIGHT, Container, TitleContainer, Title } from './Slide.styles';
 const { width } = Dimensions.get('window');
 
 interface SlideProps {
-  label: string;
+  title: string;
   right?: boolean;
 }
 
-const Slide = ({ label, right }: SlideProps) => {
+const Slide = ({ title, right }: SlideProps) => {
   const transform = [
     { translateY: (SLIDE_HEIGHT - 100) / 2 },
     { translateX: right ? width / 2 - 50 : -width / 2 + 50 },
@@ -20,7 +20,7 @@ const Slide = ({ label, right }: SlideProps) => {
   return (
     <Container>
       <TitleContainer style={{ transform }}>
-        <Title>{label}</Title>
+        <Title>{title}</Title>
       </TitleContainer>
     </Container>
   );

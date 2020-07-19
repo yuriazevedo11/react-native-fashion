@@ -4,6 +4,8 @@ import Animated from 'react-native-reanimated';
 
 import { SLIDE_HEIGHT } from './Slide';
 
+const BORDER_RADIUS = 75;
+
 export const Container = styled.View`
   flex: 1;
   background-color: #fff;
@@ -11,7 +13,7 @@ export const Container = styled.View`
 
 export const Slider = styled(Animated.View)`
   height: ${SLIDE_HEIGHT}px;
-  border-bottom-right-radius: 75px;
+  border-bottom-right-radius: ${BORDER_RADIUS}px;
 `;
 
 export const Footer = styled.View`
@@ -22,8 +24,9 @@ export const Underlay = styled(Animated.View).attrs({
   ...StyleSheet.absoluteFillObject,
 })``;
 
-export const Overlay = styled.View`
+export const FooterContent = styled(Animated.View)`
   flex: 1;
-  border-top-left-radius: 75px;
+  flex-direction: row;
+  border-top-left-radius: ${BORDER_RADIUS}px;
   background-color: #fff;
 `;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Dimensions } from 'react-native';
-import Animated from 'react-native-reanimated';
+import Animated, { multiply } from 'react-native-reanimated';
 import { useValue, onScrollEvent, interpolateColor } from 'react-native-redash';
 
 import Slide from './Slide';
@@ -9,16 +9,40 @@ import {
   Slider,
   Footer,
   Underlay,
-  Overlay,
+  FooterContent,
 } from './Onboarding.styles';
+import BottomSlide from './BottomSlide';
 
 const { width } = Dimensions.get('window');
 
 const SLIDES = [
-  { label: 'Relaxed', color: '#BFEAF5' },
-  { label: 'Playful', color: '#BEECC4' },
-  { label: 'Excentric', color: '#FFE4D9' },
-  { label: 'Funky', color: '#FFDDDD' },
+  {
+    title: 'Relaxed',
+    subtitle: 'Find Your Outfits',
+    description:
+      "Consufed about your outfits? Don't worry! Find the best outfir here!",
+    color: '#BFEAF5',
+  },
+  {
+    title: 'Playful',
+    subtitle: 'Hear it First, Wear it First',
+    description:
+      'Hating the clothes in your wardrobe? Explore hundreds of outfit ideas',
+    color: '#BEECC4',
+  },
+  {
+    title: 'Excentric',
+    subtitle: 'Your Style, Your Way',
+    description:
+      'Create your individual & unique style and look amazing everyday',
+    color: '#FFE4D9',
+  },
+  {
+    title: 'Funky',
+    subtitle: 'Look Good, Fell Good',
+    description: 'Discover the lastest fashion and explore your personality',
+    color: '#FFDDDD',
+  },
 ];
 
 const Onboarding: React.FC = () => {
@@ -29,10 +53,13 @@ const Onboarding: React.FC = () => {
     outputRange: SLIDES.map(({ color }) => color),
   });
 
+  const scrollRef = useRef<Animated.ScrollView>(null);
+
   return (
     <Container>
       <Slider style={{ backgroundColor }}>
         <Animated.ScrollView
+          ref={scrollRef}
           horizontal
           snapToInterval={width}
           decelerationRate="fast"
@@ -41,15 +68,34 @@ const Onboarding: React.FC = () => {
           bounces={false}
           {...{ onScroll }}
         >
-          {SLIDES.map(({ label }, index) => (
-            <Slide key={label} right={!!(index % 2)} {...{ label }} />
+          {SLIDES.map(({ title }, index) => (
+            <Slide key={title} right={!!(index % 2)} {...{ title }} />
           ))}
         </Animated.ScrollView>
       </Slider>
 
       <Footer>
         <Underlay style={{ backgroundColor }} />
-        <Overlay />
+        <FooterContent
+          style={{
+            width: width * SLIDES.length,
+            transform: [{ translateX: multiply(x, -1) }],
+          }}
+        >
+          {SLIDES.map(({ title, subtitle, description }, index) => (
+            <BottomSlide
+              key={title}
+              last={index === SLIDES.length - 1}
+              onPress={() =>
+                scrollRef?.current?.getNode().scrollTo({
+                  x: width * (index + 1),
+                  animated: true,
+                })
+              }
+              {...{ subtitle, description }}
+            />
+          ))}
+        </FooterContent>
       </Footer>
     </Container>
   );
