@@ -1,17 +1,20 @@
 import React, { useRef } from 'react';
 import { Dimensions } from 'react-native';
-import Animated, { multiply } from 'react-native-reanimated';
-import { useValue, onScrollEvent, interpolateColor } from 'react-native-redash';
+import Animated, { multiply, divide } from 'react-native-reanimated';
+import { interpolateColor, useScrollHandler } from 'react-native-redash';
 
 import Slide from './Slide';
+import BottomSlide from './BottomSlide';
+import Dot from './Dot';
 import {
   Container,
   Slider,
+  Pagination,
   Footer,
   Underlay,
   FooterContent,
+  SlidesWrapper,
 } from './Onboarding.styles';
-import BottomSlide from './BottomSlide';
 
 const { width } = Dimensions.get('window');
 
@@ -46,8 +49,7 @@ const SLIDES = [
 ];
 
 const Onboarding: React.FC = () => {
-  const x = useValue(0);
-  const onScroll = onScrollEvent({ x });
+  const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
     inputRange: SLIDES.map((_, index) => width * index),
     outputRange: SLIDES.map(({ color }) => color),
@@ -64,9 +66,8 @@ const Onboarding: React.FC = () => {
           snapToInterval={width}
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={1}
           bounces={false}
-          {...{ onScroll }}
+          {...scrollHandler}
         >
           {SLIDES.map(({ title }, index) => (
             <Slide key={title} right={!!(index % 2)} {...{ title }} />
@@ -76,25 +77,33 @@ const Onboarding: React.FC = () => {
 
       <Footer>
         <Underlay style={{ backgroundColor }} />
-        <FooterContent
-          style={{
-            width: width * SLIDES.length,
-            transform: [{ translateX: multiply(x, -1) }],
-          }}
-        >
-          {SLIDES.map(({ title, subtitle, description }, index) => (
-            <BottomSlide
-              key={title}
-              last={index === SLIDES.length - 1}
-              onPress={() =>
-                scrollRef?.current?.getNode().scrollTo({
-                  x: width * (index + 1),
-                  animated: true,
-                })
-              }
-              {...{ subtitle, description }}
-            />
-          ))}
+        <FooterContent>
+          <Pagination>
+            {SLIDES.map(({ title }, index) => (
+              <Dot key={title} currentIndex={divide(x, width)} {...{ index }} />
+            ))}
+          </Pagination>
+
+          <SlidesWrapper
+            style={{
+              width: width * SLIDES.length,
+              transform: [{ translateX: multiply(x, -1) }],
+            }}
+          >
+            {SLIDES.map(({ title, subtitle, description }, index) => (
+              <BottomSlide
+                key={title}
+                last={index === SLIDES.length - 1}
+                onPress={() =>
+                  scrollRef?.current?.getNode().scrollTo({
+                    x: width * (index + 1),
+                    animated: true,
+                  })
+                }
+                {...{ subtitle, description }}
+              />
+            ))}
+          </SlidesWrapper>
         </FooterContent>
       </Footer>
     </Container>

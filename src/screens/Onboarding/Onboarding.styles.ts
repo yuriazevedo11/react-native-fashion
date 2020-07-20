@@ -16,6 +16,15 @@ export const Slider = styled(Animated.View)`
   border-bottom-right-radius: ${BORDER_RADIUS}px;
 `;
 
+export const Pagination = styled.View.attrs({
+  ...StyleSheet.absoluteFillObject,
+})`
+  height: ${BORDER_RADIUS - 5}px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Footer = styled.View`
   flex: 1;
 `;
@@ -26,7 +35,12 @@ export const Underlay = styled(Animated.View).attrs({
 
 export const FooterContent = styled(Animated.View)`
   flex: 1;
-  flex-direction: row;
-  border-top-left-radius: ${BORDER_RADIUS}px;
   background-color: #fff;
+  border-top-left-radius: ${BORDER_RADIUS}px;
+`;
+
+export const SlidesWrapper = styled(Animated.View)`
+  flex: 1;
+  flex-direction: row;
+  margin-top: 30px;
 `;

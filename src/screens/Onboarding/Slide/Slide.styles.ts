@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
-export const SLIDE_HEIGHT = height * 0.61;
+export const SLIDE_HEIGHT = height * 0.57;
 
 export const Container = styled.View.attrs({
   width,
@@ -16,8 +16,8 @@ export const TitleContainer = styled.View`
 
 export const Title = styled.Text`
   font-family: 'SFProText-Bold';
-  font-size: 75px;
-  line-height: 80px;
+  font-size: 70px;
+  line-height: 75px;
   color: #fff;
   text-align: center;
 `;
