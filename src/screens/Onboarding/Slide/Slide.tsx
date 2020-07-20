@@ -1,16 +1,18 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 
-import { SLIDE_HEIGHT, Container, TitleContainer, Title } from './Slide.styles';
+import { Text, Box } from '@/components';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
+export const SLIDE_HEIGHT = height * 0.57;
+export const TITLE_HEIGHT = 100;
 
 interface SlideProps {
   title: string;
   right?: boolean;
 }
 
-const Slide = ({ title, right }: SlideProps) => {
+const Slide: React.FC<SlideProps> = ({ title, right }) => {
   const transform = [
     { translateY: (SLIDE_HEIGHT - 100) / 2 },
     { translateX: right ? width / 2 - 50 : -width / 2 + 50 },
@@ -18,11 +20,11 @@ const Slide = ({ title, right }: SlideProps) => {
   ];
 
   return (
-    <Container>
-      <TitleContainer style={{ transform }}>
-        <Title>{title}</Title>
-      </TitleContainer>
-    </Container>
+    <Box width={width}>
+      <Box style={{ height: TITLE_HEIGHT, transform }}>
+        <Text variant="hero">{title}</Text>
+      </Box>
+    </Box>
   );
 };
 

@@ -4,7 +4,7 @@ import Animated, { multiply, divide } from 'react-native-reanimated';
 import { interpolateColor, useScrollHandler } from 'react-native-redash';
 
 import Slide from './Slide';
-import BottomSlide from './BottomSlide';
+import SlideContent from './SlideContent';
 import Dot from './Dot';
 import {
   Container,
@@ -91,7 +91,7 @@ const Onboarding: React.FC = () => {
             }}
           >
             {SLIDES.map(({ title, subtitle, description }, index) => (
-              <BottomSlide
+              <SlideContent
                 key={title}
                 last={index === SLIDES.length - 1}
                 onPress={() =>

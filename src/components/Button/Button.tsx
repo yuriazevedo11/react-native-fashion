@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Container, Label } from './Button.styles';
+import { Text } from '../Theme';
+import { Container } from './Button.styles';
 
 export interface ButtonProps {
   label: string;
@@ -11,7 +12,13 @@ export interface ButtonProps {
 const Button = ({ label, variant = 'default', onPress }: ButtonProps) => {
   return (
     <Container {...{ variant, onPress }}>
-      <Label {...{ variant }}>{label}</Label>
+      <Text
+        fontFamily="SFProText-Regular"
+        color={variant === 'primary' ? 'white' : 'title'}
+        textAlign="center"
+      >
+        {label}
+      </Text>
     </Container>
   );
 };

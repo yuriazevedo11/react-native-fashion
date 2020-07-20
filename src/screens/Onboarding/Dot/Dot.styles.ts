@@ -4,7 +4,7 @@ import Animated from 'react-native-reanimated';
 const SIZE = 6;
 
 export const Container = styled(Animated.View)`
-  background-color: #2cb9b0;
+  background-color: ${({ theme }) => theme.colors.primary};
   height: ${SIZE}px;
   width: ${SIZE}px;
   border-radius: ${SIZE / 2}px;

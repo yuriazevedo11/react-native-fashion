@@ -8,7 +8,7 @@ interface DotProps {
   currentIndex: Animated.Node<number>;
 }
 
-const Dot = ({ index, currentIndex }: DotProps) => {
+const Dot: React.FC<DotProps> = ({ index, currentIndex }) => {
   const opacity = interpolate(currentIndex, {
     inputRange: [index - 1, index, index + 1],
     outputRange: [0.5, 1, 0.5],
