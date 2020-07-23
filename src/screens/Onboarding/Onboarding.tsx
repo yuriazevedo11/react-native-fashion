@@ -1,14 +1,15 @@
 import React, { useRef } from 'react';
 import { Dimensions, Image } from 'react-native';
+import { interpolateColor, useScrollHandler } from 'react-native-redash';
 import Animated, {
   multiply,
   divide,
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
-import { interpolateColor, useScrollHandler } from 'react-native-redash';
 
 import theme from '@/theme';
+import { AuthenticationProps } from '@/routes/types';
 
 import Slide from './Slide';
 import SlideContent from './SlideContent';
@@ -76,7 +77,9 @@ const SLIDES = [
   },
 ];
 
-const Onboarding: React.FC = () => {
+const Onboarding: React.FC<AuthenticationProps<'Onboarding'>> = ({
+  navigation,
+}) => {
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
     inputRange: SLIDES.map((_, index) => width * index),
@@ -143,19 +146,26 @@ const Onboarding: React.FC = () => {
               transform: [{ translateX: multiply(x, -1) }],
             }}
           >
-            {SLIDES.map(({ title, subtitle, description }, index) => (
-              <SlideContent
-                key={title}
-                last={index === SLIDES.length - 1}
-                onPress={() =>
-                  scrollRef?.current?.getNode().scrollTo({
-                    x: width * (index + 1),
-                    animated: true,
-                  })
-                }
-                {...{ subtitle, description }}
-              />
-            ))}
+            {SLIDES.map(({ title, subtitle, description }, index) => {
+              const last = index === SLIDES.length - 1;
+
+              return (
+                <SlideContent
+                  key={title}
+                  onPress={() => {
+                    if (last) {
+                      navigation.navigate('Welcome');
+                    } else {
+                      scrollRef?.current?.getNode().scrollTo({
+                        x: width * (index + 1),
+                        animated: true,
+                      });
+                    }
+                  }}
+                  {...{ subtitle, description, last }}
+                />
+              );
+            })}
           </SlidesWrapper>
         </FooterContent>
       </Footer>
