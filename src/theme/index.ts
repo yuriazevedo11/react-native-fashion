@@ -24,7 +24,6 @@ const theme = {
     hero: {
       fontFamily: 'SFProText-Bold',
       fontSize: 70,
-      lineHeight: 75,
       color: 'white',
       textAlign: 'center',
     },
@@ -37,15 +36,19 @@ const theme = {
     title2: {
       fontFamily: 'SFProText-Semibold',
       fontSize: 24,
-      lineHeight: 30,
       color: 'title',
       textAlign: 'center',
     },
     body: {
       fontFamily: 'SFProText-Regular',
       fontSize: 16,
-      lineHeight: 24,
       color: 'baseText',
+    },
+    button: {
+      fontFamily: 'SFProText-Regular',
+      fontSize: 15,
+      color: 'baseText',
+      textAlign: 'center',
     },
   },
   breakpoints: {},

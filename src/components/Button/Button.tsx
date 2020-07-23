@@ -12,11 +12,7 @@ export interface ButtonProps {
 const Button = ({ label, variant = 'default', onPress }: ButtonProps) => {
   return (
     <Container {...{ variant, onPress }}>
-      <Text
-        fontFamily="SFProText-Regular"
-        color={variant === 'primary' ? 'white' : 'title'}
-        textAlign="center"
-      >
+      <Text variant="button" color={variant === 'primary' ? 'white' : 'title'}>
         {label}
       </Text>
     </Container>
