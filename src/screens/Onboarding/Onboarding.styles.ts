@@ -4,22 +4,20 @@ import Animated from 'react-native-reanimated';
 
 import { SLIDE_HEIGHT } from './Slide';
 
-export const BORDER_RADIUS = 75;
-
 export const Container = styled.View`
   flex: 1;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Slider = styled(Animated.View)`
   height: ${SLIDE_HEIGHT}px;
-  border-bottom-right-radius: ${BORDER_RADIUS}px;
+  border-bottom-right-radius: ${({ theme }) => theme.borderRadii.xl}px;
 `;
 
 export const Pagination = styled.View.attrs({
   ...StyleSheet.absoluteFillObject,
 })`
-  height: ${BORDER_RADIUS - 5}px;
+  height: 70px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -36,7 +34,7 @@ export const Underlay = styled(Animated.View).attrs({
 export const FooterContent = styled(Animated.View)`
   flex: 1;
   background-color: #fff;
-  border-top-left-radius: ${BORDER_RADIUS}px;
+  border-top-left-radius: ${({ theme }) => theme.borderRadii.xl}px;
 `;
 
 export const SlidesWrapper = styled(Animated.View)`
@@ -48,7 +46,7 @@ export const SlidesWrapper = styled(Animated.View)`
 export const PictureUnderlay = styled(Animated.View).attrs({
   ...StyleSheet.absoluteFillObject,
 })`
-  border-bottom-right-radius: ${BORDER_RADIUS}px;
+  border-bottom-right-radius: ${({ theme }) => theme.borderRadii.xl}px;
   overflow: hidden;
   align-items: center;
   justify-content: flex-end;

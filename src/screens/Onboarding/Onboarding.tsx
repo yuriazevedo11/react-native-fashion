@@ -8,6 +8,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { interpolateColor, useScrollHandler } from 'react-native-redash';
 
+import theme from '@/theme';
+
 import Slide from './Slide';
 import SlideContent from './SlideContent';
 import Dot from './Dot';
@@ -20,7 +22,6 @@ import {
   FooterContent,
   SlidesWrapper,
   PictureUnderlay,
-  BORDER_RADIUS,
 } from './Onboarding.styles';
 
 const { width } = Dimensions.get('window');
@@ -98,14 +99,15 @@ const Onboarding: React.FC = () => {
             extrapolate: Extrapolate.CLAMP,
           });
 
+          const pictureWidth = width - theme.borderRadii.xl;
+
           return (
             <PictureUnderlay key={picture.uri} style={{ opacity }}>
               <Image
                 source={picture.uri}
                 style={{
-                  width: width - BORDER_RADIUS,
-                  height:
-                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                  width: pictureWidth,
+                  height: (pictureWidth * picture.height) / picture.width,
                 }}
               />
             </PictureUnderlay>
