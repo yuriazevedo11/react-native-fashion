@@ -22,30 +22,30 @@ const theme = {
   },
   textVariants: {
     hero: {
-      fontFamily: 'SFProText-Bold',
+      fontFamily: 'SFProDisplay-Bold',
       fontSize: 70,
       color: 'white',
       textAlign: 'center',
     },
     title1: {
-      fontFamily: 'SFProText-Semibold',
+      fontFamily: 'SFProDisplay-Semibold',
       fontSize: 28,
       color: 'title',
       textAlign: 'center',
     },
     title2: {
-      fontFamily: 'SFProText-Semibold',
+      fontFamily: 'SFProDisplay-Semibold',
       fontSize: 24,
       color: 'title',
       textAlign: 'center',
     },
     body: {
-      fontFamily: 'SFProText-Regular',
+      fontFamily: 'SFProDisplay-Regular',
       fontSize: 16,
       color: 'baseText',
     },
     button: {
-      fontFamily: 'SFProText-Regular',
+      fontFamily: 'SFProDisplay-Medium',
       fontSize: 15,
       color: 'baseText',
       textAlign: 'center',
