@@ -4,7 +4,7 @@ import Animated from 'react-native-reanimated';
 
 import { SLIDE_HEIGHT } from './Slide';
 
-const BORDER_RADIUS = 75;
+export const BORDER_RADIUS = 75;
 
 export const Container = styled.View`
   flex: 1;
@@ -43,4 +43,13 @@ export const SlidesWrapper = styled(Animated.View)`
   flex: 1;
   flex-direction: row;
   margin-top: 30px;
+`;
+
+export const PictureUnderlay = styled(Animated.View).attrs({
+  ...StyleSheet.absoluteFillObject,
+})`
+  border-bottom-right-radius: ${BORDER_RADIUS}px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: flex-end;
 `;

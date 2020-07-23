@@ -1,6 +1,11 @@
 import React, { useRef } from 'react';
-import { Dimensions } from 'react-native';
-import Animated, { multiply, divide } from 'react-native-reanimated';
+import { Dimensions, Image } from 'react-native';
+import Animated, {
+  multiply,
+  divide,
+  interpolate,
+  Extrapolate,
+} from 'react-native-reanimated';
 import { interpolateColor, useScrollHandler } from 'react-native-redash';
 
 import Slide from './Slide';
@@ -14,6 +19,8 @@ import {
   Underlay,
   FooterContent,
   SlidesWrapper,
+  PictureUnderlay,
+  BORDER_RADIUS,
 } from './Onboarding.styles';
 
 const { width } = Dimensions.get('window');
@@ -25,6 +32,11 @@ const SLIDES = [
     description:
       "Consufed about your outfits? Don't worry! Find the best outfir here!",
     color: '#BFEAF5',
+    picture: {
+      uri: require('../../../assets/slider-image-1.png'),
+      width: 408,
+      height: 512,
+    },
   },
   {
     title: 'Playful',
@@ -32,6 +44,11 @@ const SLIDES = [
     description:
       'Hating the clothes in your wardrobe? Explore hundreds of outfit ideas',
     color: '#BEECC4',
+    picture: {
+      uri: require('../../../assets/slider-image-2.png'),
+      width: 408,
+      height: 512,
+    },
   },
   {
     title: 'Excentric',
@@ -39,12 +56,22 @@ const SLIDES = [
     description:
       'Create your individual & unique style and look amazing everyday',
     color: '#FFE4D9',
+    picture: {
+      uri: require('../../../assets/slider-image-3.png'),
+      width: 408,
+      height: 512,
+    },
   },
   {
     title: 'Funky',
     subtitle: 'Look Good, Fell Good',
     description: 'Discover the lastest fashion and explore your personality',
     color: '#FFDDDD',
+    picture: {
+      uri: require('../../../assets/slider-image-4.png'),
+      width: 408,
+      height: 512,
+    },
   },
 ];
 
@@ -60,6 +87,30 @@ const Onboarding: React.FC = () => {
   return (
     <Container>
       <Slider style={{ backgroundColor }}>
+        {SLIDES.map(({ picture }, index) => {
+          const opacity = interpolate(x, {
+            inputRange: [
+              (index - 0.7) * width,
+              index * width,
+              (index + 0.7) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+
+          return (
+            <PictureUnderlay key={picture.uri} style={{ opacity }}>
+              <Image
+                source={picture.uri}
+                style={{
+                  width: width - BORDER_RADIUS,
+                  height:
+                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                }}
+              />
+            </PictureUnderlay>
+          );
+        })}
         <Animated.ScrollView
           ref={scrollRef}
           horizontal
