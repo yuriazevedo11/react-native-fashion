@@ -10,7 +10,7 @@ const palette = {
 const theme = {
   colors: {
     primary: palette.greenPrimary,
-    title: palette.black,
+    secondary: palette.black,
     baseText: palette.blackLight,
     grey: palette.grey,
     white: palette.white,
@@ -38,13 +38,13 @@ const theme = {
     title1: {
       fontFamily: 'SFProDisplay-Semibold',
       fontSize: 28,
-      color: 'title',
+      color: 'secondary',
       textAlign: 'center',
     },
     title2: {
       fontFamily: 'SFProDisplay-Semibold',
       fontSize: 24,
-      color: 'title',
+      color: 'secondary',
       textAlign: 'center',
     },
     body: {

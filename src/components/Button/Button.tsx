@@ -22,7 +22,10 @@ const Button = ({ label, variant = 'default', onPress }: ButtonProps) => {
 
   return (
     <Container {...{ backgroundColor, onPress }}>
-      <Text variant="button" color={variant === 'primary' ? 'white' : 'title'}>
+      <Text
+        variant="button"
+        color={variant === 'primary' ? 'white' : 'secondary'}
+      >
         {label}
       </Text>
     </Container>

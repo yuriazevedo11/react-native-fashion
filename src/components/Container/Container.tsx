@@ -12,7 +12,7 @@ interface ContainerProps {
 
 const Container: React.FC<ContainerProps> = ({ children, footer }) => {
   return (
-    <Box flex={1} backgroundColor="title">
+    <Box flex={1} backgroundColor="secondary">
       <StatusBar style="light" />
 
       <Box backgroundColor="white">
@@ -37,7 +37,7 @@ const Container: React.FC<ContainerProps> = ({ children, footer }) => {
         </Box>
       </Box>
 
-      <Box backgroundColor="title">{footer}</Box>
+      <Box backgroundColor="secondary">{footer}</Box>
     </Box>
   );
 };
