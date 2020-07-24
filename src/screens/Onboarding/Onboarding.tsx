@@ -8,7 +8,6 @@ import Animated, {
   Extrapolate,
 } from 'react-native-reanimated';
 
-import theme from '@/theme';
 import { AuthenticationProps } from '@/routes/types';
 
 import Slide from './Slide';
@@ -22,7 +21,7 @@ import {
   Underlay,
   FooterContent,
   SlidesWrapper,
-  PictureUnderlay,
+  Overlay,
 } from './Onboarding.styles';
 
 const { width } = Dimensions.get('window');
@@ -34,11 +33,7 @@ const SLIDES = [
     description:
       "Consufed about your outfits? Don't worry! Find the best outfir here!",
     color: '#BFEAF5',
-    picture: {
-      src: require('../../../assets/slider-image-1.png'),
-      width: 408,
-      height: 512,
-    },
+    picture: require('../../../assets/slider-image-1.png'),
   },
   {
     title: 'Playful',
@@ -46,11 +41,7 @@ const SLIDES = [
     description:
       'Hating the clothes in your wardrobe? Explore hundreds of outfit ideas',
     color: '#BEECC4',
-    picture: {
-      src: require('../../../assets/slider-image-2.png'),
-      width: 408,
-      height: 512,
-    },
+    picture: require('../../../assets/slider-image-2.png'),
   },
   {
     title: 'Excentric',
@@ -58,26 +49,18 @@ const SLIDES = [
     description:
       'Create your individual & unique style and look amazing everyday',
     color: '#FFE4D9',
-    picture: {
-      src: require('../../../assets/slider-image-3.png'),
-      width: 408,
-      height: 512,
-    },
+    picture: require('../../../assets/slider-image-3.png'),
   },
   {
     title: 'Funky',
     subtitle: 'Look Good, Fell Good',
     description: 'Discover the lastest fashion and explore your personality',
     color: '#FFDDDD',
-    picture: {
-      src: require('../../../assets/slider-image-4.png'),
-      width: 408,
-      height: 512,
-    },
+    picture: require('../../../assets/slider-image-4.png'),
   },
 ];
 
-export const assets = SLIDES.map((slide) => slide.picture.src);
+export const assets = SLIDES.map((slide) => slide.picture);
 
 const Onboarding: React.FC<AuthenticationProps<'Onboarding'>> = ({
   navigation,
@@ -104,18 +87,16 @@ const Onboarding: React.FC<AuthenticationProps<'Onboarding'>> = ({
             extrapolate: Extrapolate.CLAMP,
           });
 
-          const pictureWidth = width - theme.borderRadii.xl;
-
           return (
-            <PictureUnderlay key={picture.src} style={{ opacity }}>
+            <Overlay key={picture} style={{ opacity }}>
               <Image
-                source={picture.src}
+                source={picture}
                 style={{
-                  width: pictureWidth,
-                  height: (pictureWidth * picture.height) / picture.width,
+                  aspectRatio: 408 / 512,
+                  height: '100%',
                 }}
               />
-            </PictureUnderlay>
+            </Overlay>
           );
         })}
         <Animated.ScrollView

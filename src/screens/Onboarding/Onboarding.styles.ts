@@ -43,7 +43,7 @@ export const SlidesWrapper = styled(Animated.View)`
   margin-top: 30px;
 `;
 
-export const PictureUnderlay = styled(Animated.View).attrs({
+export const Overlay = styled(Animated.View).attrs({
   ...StyleSheet.absoluteFillObject,
 })`
   border-bottom-right-radius: ${({ theme }) => theme.borderRadii.xl}px;
