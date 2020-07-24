@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { Box } from '@/components';
+import { Box, Container } from '@/components';
 import { AuthenticationProps } from '@/routes/types';
 
 // import { Container } from './Login.styles';
 
 const Login: React.FC<AuthenticationProps<'Login'>> = () => {
-  return <Box flex={1} />;
+  return (
+    <Container>
+      <Box flex={1} />
+    </Container>
+  );
 };
 
 export default Login;
