@@ -5,3 +5,4 @@ export const assets = [...onboardingAssets, ...welcomeAssets];
 
 export { Onboarding } from './Onboarding';
 export { Welcome } from './Welcome';
+export { Login } from './Login';

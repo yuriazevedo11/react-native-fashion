@@ -6,7 +6,7 @@ import { Box, Text, Button } from '@/components';
 
 export const assets = [require('../../../assets/welcome.png')];
 
-const Welcome: React.FC<AuthenticationProps<'Welcome'>> = () => {
+const Welcome: React.FC<AuthenticationProps<'Welcome'>> = ({ navigation }) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box
@@ -42,7 +42,7 @@ const Welcome: React.FC<AuthenticationProps<'Welcome'>> = () => {
           <Button
             variant="primary"
             label="Have an account? Login"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('Login')}
           />
           <Button label="Join us, it's Free" onPress={() => {}} />
           <Button
