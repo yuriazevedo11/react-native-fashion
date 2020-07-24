@@ -5,9 +5,10 @@ import React from 'react';
 import { ThemeProvider } from '@shopify/restyle';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
-import Routes from './src/routes';
-import { LoadAssets } from './src/components';
-import theme from './src/theme';
+import Routes from '@/routes';
+import { assets } from '@/screens';
+import { LoadAssets } from '@/components';
+import theme from '@/theme';
 
 const fonts = {
   'SFProDisplay-Bold': require('./assets/fonts/SFProDisplay-Bold.ttf'),
@@ -19,7 +20,7 @@ const fonts = {
 const App: React.FC = () => (
   <ThemeProvider {...{ theme }}>
     <StyledThemeProvider {...{ theme }}>
-      <LoadAssets {...{ fonts }}>
+      <LoadAssets {...{ fonts, assets }}>
         <StatusBar style="auto" />
         <Routes />
       </LoadAssets>

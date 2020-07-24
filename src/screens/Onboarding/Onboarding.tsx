@@ -35,7 +35,7 @@ const SLIDES = [
       "Consufed about your outfits? Don't worry! Find the best outfir here!",
     color: '#BFEAF5',
     picture: {
-      uri: require('../../../assets/slider-image-1.png'),
+      src: require('../../../assets/slider-image-1.png'),
       width: 408,
       height: 512,
     },
@@ -47,7 +47,7 @@ const SLIDES = [
       'Hating the clothes in your wardrobe? Explore hundreds of outfit ideas',
     color: '#BEECC4',
     picture: {
-      uri: require('../../../assets/slider-image-2.png'),
+      src: require('../../../assets/slider-image-2.png'),
       width: 408,
       height: 512,
     },
@@ -59,7 +59,7 @@ const SLIDES = [
       'Create your individual & unique style and look amazing everyday',
     color: '#FFE4D9',
     picture: {
-      uri: require('../../../assets/slider-image-3.png'),
+      src: require('../../../assets/slider-image-3.png'),
       width: 408,
       height: 512,
     },
@@ -70,12 +70,14 @@ const SLIDES = [
     description: 'Discover the lastest fashion and explore your personality',
     color: '#FFDDDD',
     picture: {
-      uri: require('../../../assets/slider-image-4.png'),
+      src: require('../../../assets/slider-image-4.png'),
       width: 408,
       height: 512,
     },
   },
 ];
+
+export const assets = SLIDES.map((slide) => slide.picture.src);
 
 const Onboarding: React.FC<AuthenticationProps<'Onboarding'>> = ({
   navigation,
@@ -105,9 +107,9 @@ const Onboarding: React.FC<AuthenticationProps<'Onboarding'>> = ({
           const pictureWidth = width - theme.borderRadii.xl;
 
           return (
-            <PictureUnderlay key={picture.uri} style={{ opacity }}>
+            <PictureUnderlay key={picture.src} style={{ opacity }}>
               <Image
-                source={picture.uri}
+                source={picture.src}
                 style={{
                   width: pictureWidth,
                   height: (pictureWidth * picture.height) / picture.width,

@@ -4,6 +4,8 @@ import { StyleSheet, Image } from 'react-native';
 import { AuthenticationProps } from '@/routes/types';
 import { Box, Text, Button } from '@/components';
 
+export const assets = [require('../../../assets/welcome.png')];
+
 const Welcome: React.FC<AuthenticationProps<'Welcome'>> = () => {
   return (
     <Box flex={1} backgroundColor="white">
@@ -15,7 +17,7 @@ const Welcome: React.FC<AuthenticationProps<'Welcome'>> = () => {
         alignItems="center"
       >
         <Image
-          source={require('../../../assets/welcome.png')}
+          source={assets[0]}
           style={{
             aspectRatio: 408 / 525,
             height: '100%',
