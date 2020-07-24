@@ -4,6 +4,7 @@ const palette = {
   blackLight: 'rgba(12, 13, 52, 0.7)',
   grey: 'rgba(12, 13, 52, 0.05)',
   white: '#fff',
+  transparent: 'transparent',
 };
 
 const theme = {
@@ -11,8 +12,9 @@ const theme = {
     primary: palette.greenPrimary,
     title: palette.black,
     baseText: palette.blackLight,
-    buttonDefaultBackground: palette.grey,
+    grey: palette.grey,
     white: palette.white,
+    transparent: palette.transparent,
   },
   spacing: {
     s: 8,

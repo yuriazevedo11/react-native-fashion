@@ -1,17 +1,27 @@
 import React from 'react';
 
+import theme from '@/theme';
+
 import { Text } from '../Theme';
 import { Container } from './Button.styles';
 
-export interface ButtonProps {
+interface ButtonProps {
   label: string;
-  variant?: 'default' | 'primary';
+  variant?: 'default' | 'primary' | 'transparent';
   onPress: () => void;
 }
 
+const VARIANTS = {
+  default: theme.colors.grey,
+  primary: theme.colors.primary,
+  transparent: theme.colors.transparent,
+};
+
 const Button = ({ label, variant = 'default', onPress }: ButtonProps) => {
+  const backgroundColor = VARIANTS[variant];
+
   return (
-    <Container {...{ variant, onPress }}>
+    <Container {...{ backgroundColor, onPress }}>
       <Text variant="button" color={variant === 'primary' ? 'white' : 'title'}>
         {label}
       </Text>
