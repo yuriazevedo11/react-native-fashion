@@ -1,33 +1,42 @@
 import React from 'react';
+import { useTheme } from '@shopify/restyle';
 
-import theme from '@/theme';
+import { Theme } from '@/theme';
 
 import { Text } from '../Theme';
 import { Container } from './Button.styles';
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   variant?: 'default' | 'primary' | 'transparent';
   onPress: () => void;
 }
 
-const VARIANTS = {
-  default: theme.colors.grey,
-  primary: theme.colors.primary,
-  transparent: theme.colors.transparent,
-};
+const Button: React.FC<ButtonProps> = ({
+  label,
+  variant = 'default',
+  onPress,
+  children,
+}) => {
+  const theme = useTheme<Theme>();
+  const variants = {
+    default: theme.colors.grey,
+    primary: theme.colors.primary,
+    transparent: theme.colors.transparent,
+  };
 
-const Button = ({ label, variant = 'default', onPress }: ButtonProps) => {
-  const backgroundColor = VARIANTS[variant];
+  const backgroundColor = variants[variant];
 
   return (
     <Container {...{ backgroundColor, onPress }}>
-      <Text
-        variant="button"
-        color={variant === 'primary' ? 'white' : 'secondary'}
-      >
-        {label}
-      </Text>
+      {children || (
+        <Text
+          variant="button"
+          color={variant === 'primary' ? 'white' : 'secondary'}
+        >
+          {label}
+        </Text>
+      )}
     </Container>
   );
 };

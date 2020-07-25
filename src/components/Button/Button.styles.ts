@@ -6,7 +6,6 @@ interface ButtonStyleProps {
 }
 
 export const Container = styled(RectButton)<ButtonStyleProps>`
-  background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 25px;
   height: 50px;
   width: 245px;

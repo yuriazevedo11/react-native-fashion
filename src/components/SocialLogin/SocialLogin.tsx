@@ -3,7 +3,7 @@ import React from 'react';
 import { Box } from '../Theme';
 import SocialIcon from './SocialIcon';
 
-const SocialLogin: React.FC = () => {
+const SocialLogin = () => {
   return (
     <Box flexDirection="row" justifyContent="center">
       <SocialIcon provider="google" />

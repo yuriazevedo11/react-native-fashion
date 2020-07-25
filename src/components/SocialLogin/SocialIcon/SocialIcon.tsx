@@ -54,7 +54,7 @@ const PROVIDERS = {
   apple: Apple,
 };
 
-const SocialIcon: React.FC<SocialIconProps> = ({ provider }) => {
+const SocialIcon = ({ provider }: SocialIconProps) => {
   const theme = useTheme<Theme>();
   const size = theme.borderRadii.l * 2;
   const Provider = PROVIDERS[provider];
