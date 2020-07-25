@@ -1,9 +1,8 @@
 import React from 'react';
 import { TextInputProps, TextInput, StyleSheet } from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
-import { useTheme } from '@shopify/restyle';
 
-import { Theme } from '@/theme';
+import useTheme from '@/hooks/useTheme';
 
 import { Box } from '../Theme';
 
@@ -12,7 +11,7 @@ interface TextFieldProps extends TextInputProps {
 }
 
 const TextField = ({ icon, ...textInputProps }: TextFieldProps) => {
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
 
   return (
     <Box

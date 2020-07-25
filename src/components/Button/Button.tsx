@@ -1,7 +1,6 @@
 import React from 'react';
-import { useTheme } from '@shopify/restyle';
 
-import { Theme } from '@/theme';
+import useTheme from '@/hooks/useTheme';
 
 import { Text } from '../Theme';
 import { Container } from './Button.styles';
@@ -18,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   onPress,
   children,
 }) => {
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const variants = {
     default: theme.colors.grey,
     primary: theme.colors.primary,

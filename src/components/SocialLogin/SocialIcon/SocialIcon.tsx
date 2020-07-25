@@ -1,9 +1,8 @@
 import React from 'react';
-import { useTheme } from '@shopify/restyle';
 import Svg, { Path } from 'react-native-svg';
 
 import { Box } from '@/components/Theme';
-import { Theme } from '@/theme';
+import useTheme from '@/hooks/useTheme';
 
 const Google = () => (
   <Svg viewBox="0 0 512 512" height={24} width={24}>
@@ -55,7 +54,7 @@ const PROVIDERS = {
 };
 
 const SocialIcon = ({ provider }: SocialIconProps) => {
-  const theme = useTheme<Theme>();
+  const theme = useTheme();
   const size = theme.borderRadii.l * 2;
   const Provider = PROVIDERS[provider];
 
