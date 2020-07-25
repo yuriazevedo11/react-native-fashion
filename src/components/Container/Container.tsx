@@ -37,7 +37,9 @@ const Container: React.FC<ContainerProps> = ({ children, footer }) => {
         </Box>
       </Box>
 
-      <Box backgroundColor="secondary">{footer}</Box>
+      <Box backgroundColor="secondary" paddingVertical="m">
+        {footer}
+      </Box>
     </Box>
   );
 };
