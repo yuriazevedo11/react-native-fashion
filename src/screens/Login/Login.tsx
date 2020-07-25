@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { Box, Container, SocialLogin, Button, Text } from '@/components';
+import {
+  Box,
+  Container,
+  SocialLogin,
+  Button,
+  Text,
+  TextField,
+} from '@/components';
 import { AuthenticationProps } from '@/routes/types';
-
-// import { Container } from './Login.styles';
 
 const Login: React.FC<AuthenticationProps<'Login'>> = () => {
   const footer = (
@@ -24,7 +29,19 @@ const Login: React.FC<AuthenticationProps<'Login'>> = () => {
 
   return (
     <Container {...{ footer }}>
-      <Box flex={1} />
+      <Box padding="l">
+        <Text variant="title1" marginBottom="m">
+          Welcome back
+        </Text>
+        <Text variant="body" textAlign="center" marginBottom="l">
+          Use your credentials below and login to your account
+        </Text>
+
+        <Box marginBottom="m">
+          <TextField icon="mail" placeholder="Enter your Email" />
+        </Box>
+        <TextField icon="lock" placeholder="Enter your Password" />
+      </Box>
     </Container>
   );
 };
