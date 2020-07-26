@@ -5,6 +5,7 @@ const palette = {
   grey: 'rgba(12, 13, 52, 0.05)',
   white: '#fff',
   transparent: 'transparent',
+  red: '#FF0058',
 };
 
 const theme = {
@@ -15,6 +16,7 @@ const theme = {
     grey: palette.grey,
     white: palette.white,
     transparent: palette.transparent,
+    danger: palette.red,
   },
   spacing: {
     s: 8,

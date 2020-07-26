@@ -8,10 +8,24 @@ import { Box } from '../Theme';
 
 interface TextFieldProps extends TextInputProps {
   icon: string;
+  touched?: boolean;
+  error?: string;
 }
 
-const TextField = ({ icon, ...textInputProps }: TextFieldProps) => {
+const TextField = ({
+  icon,
+  touched,
+  error,
+  ...textInputProps
+}: TextFieldProps) => {
   const theme = useTheme();
+  const validationSize = theme.borderRadii.m * 2;
+  const restyleColor = (() => {
+    if (touched && error) return 'danger';
+    if (touched && !error) return 'primary';
+    return 'baseText';
+  })();
+  const color = theme.colors[restyleColor];
 
   return (
     <Box
@@ -20,16 +34,33 @@ const TextField = ({ icon, ...textInputProps }: TextFieldProps) => {
       flexDirection="row"
       borderRadius="s"
       alignItems="center"
-      borderColor="baseText"
+      borderColor={restyleColor}
       borderWidth={StyleSheet.hairlineWidth}
     >
       <Box padding="s">
-        <Icon name={icon} size={16} color={theme.colors.baseText} />
+        <Icon name={icon} size={16} {...{ color }} />
       </Box>
+
       <Box flex={1}>
-        <TextInput underlineColorAndroid="transparent" {...textInputProps} />
+        <TextInput
+          placeholderTextColor={color}
+          underlineColorAndroid="transparent"
+          {...textInputProps}
+        />
       </Box>
-      {/* TODO validation */}
+
+      {touched && (
+        <Box
+          height={validationSize}
+          width={validationSize}
+          borderRadius="m"
+          justifyContent="center"
+          alignItems="center"
+          backgroundColor={error ? 'danger' : 'primary'}
+        >
+          <Icon name={error ? 'x' : 'check'} color="white" size={16} />
+        </Box>
+      )}
     </Box>
   );
 };
